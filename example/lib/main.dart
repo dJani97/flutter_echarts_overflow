@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
           title: Text('Super Wide Chart'),
         ),
         backgroundColor: Colors.white,
-        body: MySuperWideChart(),
+        body: Container(height: 500, child: MySuperWideChart()),
       ),
     );
   }
