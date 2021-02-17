@@ -25,6 +25,25 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class FakeDevicePixelRatio extends StatelessWidget {
+  final double ratio;
+  final Widget child;
+
+  FakeDevicePixelRatio({this.ratio, this.child}) : assert(ratio != null);
+
+  @override
+  Widget build(BuildContext context) {
+    return Transform.scale(
+      scale: 0.3,
+      child: FractionallySizedBox(
+        widthFactor: 3,
+        heightFactor: 3,
+        child: child,
+      ),
+    );
+  }
+}
+
 /// This chart is a copy of https://echarts.apache.org/examples/en/editor.html?c=multiple-y-axis
 class MySuperWideChart extends StatelessWidget {
   @override
@@ -32,7 +51,7 @@ class MySuperWideChart extends StatelessWidget {
     return Container(
       // width: 300,
       child: FakeDevicePixelRatio(
-        ratio: 0.5,
+        ratio: 0.5, // not effective right now
         child: Echarts(
           extraScript: '''
                 var colors = ['#5470C6', '#91CC75', '#EE6666'];
@@ -142,25 +161,6 @@ class MySuperWideChart extends StatelessWidget {
                 }
                 ''',
         ),
-      ),
-    );
-  }
-}
-
-class FakeDevicePixelRatio extends StatelessWidget {
-  final double ratio;
-  final Widget child;
-
-  FakeDevicePixelRatio({this.ratio, this.child}) : assert(ratio != null);
-
-  @override
-  Widget build(BuildContext context) {
-    return Transform.scale(
-      scale: ratio,
-      child: FractionallySizedBox(
-        widthFactor: 1 / ratio,
-        heightFactor: 1 / ratio,
-        child: child,
       ),
     );
   }
