@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
           title: Text('Super Wide Chart'),
         ),
         backgroundColor: Colors.white,
-        body: Container(height: 500, child: MySuperWideChart()),
+        body: MySuperWideChart(),
       ),
     );
   }
@@ -33,12 +33,15 @@ class FakeDevicePixelRatio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform.scale(
-      scale: 0.3,
-      child: FractionallySizedBox(
-        widthFactor: 3,
-        heightFactor: 3,
-        child: child,
+    return RotatedBox(
+      quarterTurns: 1,
+      child: Transform.scale(
+        scale: 0.3333,
+        child: FractionallySizedBox(
+          widthFactor: 3,
+          heightFactor: 3,
+          child: child,
+        ),
       ),
     );
   }
